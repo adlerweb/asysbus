@@ -1,0 +1,108 @@
+Cmp-Mod V01 Created by Cvpcb (2015-04-05 BZR 5577)-product   date = Di 07 Apr 2015 19:08:51 CEST
+
+BeginCmp
+TimeStamp = /5522B427;
+Reference = C1;
+ValeurCmp = 100nF;
+IdModule  = Capacitors_SMD:C_0603_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = /5522A350;
+Reference = C2;
+ValeurCmp = 22pF;
+IdModule  = Capacitors_SMD:C_0805_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = /5522A3BF;
+Reference = C3;
+ValeurCmp = 22pF;
+IdModule  = Capacitors_SMD:C_0805_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = /5522B77D;
+Reference = C4;
+ValeurCmp = 100nF;
+IdModule  = Capacitors_SMD:C_0603_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = /55231BCD;
+Reference = F1;
+ValeurCmp = 160mA;
+IdModule  = Fuse_Holders_and_Fuses:Fuse_SMD1206_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = /55229C76;
+Reference = IC1;
+ValeurCmp = MCP2515;
+IdModule  = Housings_SOIC:SOIC-18_7.5x11.6mm_Pitch1.27mm;
+EndCmp
+
+BeginCmp
+TimeStamp = /55229D42;
+Reference = IC2;
+ValeurCmp = MCP2551;
+IdModule  = Power_Integrations:SO-8;
+EndCmp
+
+BeginCmp
+TimeStamp = /55229960;
+Reference = P1;
+ValeurCmp = CONN_12;
+IdModule  = Pin_Headers:Pin_Header_Straight_1x12;
+EndCmp
+
+BeginCmp
+TimeStamp = /55229ABD;
+Reference = P2;
+ValeurCmp = CONN_12;
+IdModule  = Pin_Headers:Pin_Header_Straight_1x12;
+EndCmp
+
+BeginCmp
+TimeStamp = /55229DBF;
+Reference = P3;
+ValeurCmp = CONN_4;
+IdModule  = Pin_Headers:Pin_Header_Angled_1x04;
+EndCmp
+
+BeginCmp
+TimeStamp = /5522A1BF;
+Reference = Q1;
+ValeurCmp = 16MHz;
+IdModule  = Crystals:Crystal_HC49-SD_SMD;
+EndCmp
+
+BeginCmp
+TimeStamp = /5522C92B;
+Reference = R1;
+ValeurCmp = 4.7kΩ;
+IdModule  = Resistors_SMD:R_0805_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = /5523187F;
+Reference = R2;
+ValeurCmp = 120Ω;
+IdModule  = Resistors_SMD:R_0805_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = /5522E4DE;
+Reference = SJ1;
+ValeurCmp = SJ_MOSI;
+IdModule  = smdj:JMP_3;
+EndCmp
+
+BeginCmp
+TimeStamp = /5522E555;
+Reference = SJ2;
+ValeurCmp = SJ_CS;
+IdModule  = smdj:JMP_3;
+EndCmp
+
+EndListe

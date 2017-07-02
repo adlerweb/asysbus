@@ -1,0 +1,435 @@
+EESchema Schematic File Version 2
+LIBS:MiniCAN-rescue
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:mcp2515
+LIBS:mcp2551
+LIBS:sj
+LIBS:conn_wago
+LIBS:MiniCAN-cache
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title "MiniCAN"
+Date ""
+Rev ""
+Comp "www.adlerweb.info"
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L CONN_12 P1
+U 1 1 55229960
+P 800 1250
+F 0 "P1" V 750 1250 60  0000 C CNN
+F 1 "CONN_12" V 850 1250 60  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x12" H 800 1250 60  0001 C CNN
+F 3 "" H 800 1250 60  0000 C CNN
+	1    800  1250
+	-1   0    0    1   
+$EndComp
+$Comp
+L CONN_12 P2
+U 1 1 55229ABD
+P 2150 1250
+F 0 "P2" V 2100 1250 60  0000 C CNN
+F 1 "CONN_12" V 2200 1250 60  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x12" H 2150 1250 60  0001 C CNN
+F 3 "" H 2150 1250 60  0000 C CNN
+	1    2150 1250
+	1    0    0    -1  
+$EndComp
+$Comp
+L MCP2515 IC1
+U 1 1 55229C76
+P 4950 1500
+F 0 "IC1" H 5500 850 60  0000 C CNN
+F 1 "MCP2515" H 4900 2100 60  0000 C CNN
+F 2 "Housings_SOIC:SOIC-18_7.5x11.6mm_Pitch1.27mm" H 4950 1500 60  0001 C CNN
+F 3 "" H 4950 1500 60  0000 C CNN
+	1    4950 1500
+	1    0    0    -1  
+$EndComp
+$Comp
+L MCP2551 IC2
+U 1 1 55229D42
+P 8350 2450
+F 0 "IC2" H 8550 2150 60  0000 C CNN
+F 1 "PCA 82C25x" H 8300 2700 60  0000 C CNN
+F 2 "Power_Integrations:SO-8" H 8350 2450 60  0001 C CNN
+F 3 "" H 8350 2450 60  0000 C CNN
+	1    8350 2450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Crystal Q1
+U 1 1 5522A1BF
+P 6250 1550
+F 0 "Q1" H 6350 1590 50  0000 L BNN
+F 1 "16MHz/4MHz" H 6350 1450 50  0000 L BNN
+F 2 "Crystals:Crystal_HC49-SD_SMD" H 6250 1700 50  0001 C CNN
+F 3 "" H 6250 1550 60  0000 C CNN
+	1    6250 1550
+	0    -1   -1   0   
+$EndComp
+$Comp
+L C C2
+U 1 1 5522A350
+P 6650 1450
+F 0 "C2" H 6650 1550 40  0000 L CNN
+F 1 "22pF" H 6656 1365 40  0000 L CNN
+F 2 "Capacitors_SMD:C_0805_HandSoldering" H 6688 1300 30  0001 C CNN
+F 3 "" H 6650 1450 60  0000 C CNN
+	1    6650 1450
+	0    1    1    0   
+$EndComp
+$Comp
+L C C3
+U 1 1 5522A3BF
+P 6650 1650
+F 0 "C3" H 6650 1750 40  0000 L CNN
+F 1 "22pF" H 6656 1565 40  0000 L CNN
+F 2 "Capacitors_SMD:C_0805_HandSoldering" H 6688 1500 30  0001 C CNN
+F 3 "" H 6650 1650 60  0000 C CNN
+	1    6650 1650
+	0    1    1    0   
+$EndComp
+$Comp
+L GND-RESCUE-MiniCAN #PWR01
+U 1 1 5522A888
+P 6850 1650
+F 0 "#PWR01" H 6850 1650 30  0001 C CNN
+F 1 "GND" H 6850 1580 30  0001 C CNN
+F 2 "" H 6850 1650 60  0000 C CNN
+F 3 "" H 6850 1650 60  0000 C CNN
+	1    6850 1650
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND-RESCUE-MiniCAN #PWR02
+U 1 1 5522AD9A
+P 7250 2800
+F 0 "#PWR02" H 7250 2800 30  0001 C CNN
+F 1 "GND" H 7250 2730 30  0001 C CNN
+F 2 "" H 7250 2800 60  0000 C CNN
+F 3 "" H 7250 2800 60  0000 C CNN
+	1    7250 2800
+	1    0    0    -1  
+$EndComp
+$Comp
+L +5V #PWR03
+U 1 1 5522ADAF
+P 7250 2400
+F 0 "#PWR03" H 7250 2490 20  0001 C CNN
+F 1 "+5V" H 7250 2490 30  0000 C CNN
+F 2 "" H 7250 2400 60  0000 C CNN
+F 3 "" H 7250 2400 60  0000 C CNN
+	1    7250 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND-RESCUE-MiniCAN #PWR04
+U 1 1 5522B0E9
+P 3800 2200
+F 0 "#PWR04" H 3800 2200 30  0001 C CNN
+F 1 "GND" H 3800 2130 30  0001 C CNN
+F 2 "" H 3800 2200 60  0000 C CNN
+F 3 "" H 3800 2200 60  0000 C CNN
+	1    3800 2200
+	1    0    0    -1  
+$EndComp
+$Comp
+L +5V #PWR05
+U 1 1 5522B1FC
+P 3800 1800
+F 0 "#PWR05" H 3800 1890 20  0001 C CNN
+F 1 "+5V" H 3800 1890 30  0000 C CNN
+F 2 "" H 3800 1800 60  0000 C CNN
+F 3 "" H 3800 1800 60  0000 C CNN
+	1    3800 1800
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C1
+U 1 1 5522B427
+P 3800 2000
+F 0 "C1" H 3800 2100 40  0000 L CNN
+F 1 "100nF" H 3806 1915 40  0000 L CNN
+F 2 "Capacitors_SMD:C_0603_HandSoldering" H 3838 1850 30  0001 C CNN
+F 3 "" H 3800 2000 60  0000 C CNN
+	1    3800 2000
+	-1   0    0    1   
+$EndComp
+$Comp
+L C C4
+U 1 1 5522B77D
+P 7250 2600
+F 0 "C4" H 7250 2700 40  0000 L CNN
+F 1 "100nF" H 7256 2515 40  0000 L CNN
+F 2 "Capacitors_SMD:C_0603_HandSoldering" H 7288 2450 30  0001 C CNN
+F 3 "" H 7250 2600 60  0000 C CNN
+	1    7250 2600
+	-1   0    0    1   
+$EndComp
+$Comp
+L GND-RESCUE-MiniCAN #PWR06
+U 1 1 5522C1FB
+P 10600 2450
+F 0 "#PWR06" H 10600 2450 30  0001 C CNN
+F 1 "GND" H 10600 2380 30  0001 C CNN
+F 2 "" H 10600 2450 60  0000 C CNN
+F 3 "" H 10600 2450 60  0000 C CNN
+	1    10600 2450
+	0    1    1    0   
+$EndComp
+$Comp
+L +12V #PWR07
+U 1 1 5522C212
+P 10600 1850
+F 0 "#PWR07" H 10600 1800 20  0001 C CNN
+F 1 "+12V" H 10600 1950 30  0000 C CNN
+F 2 "" H 10600 1850 60  0000 C CNN
+F 3 "" H 10600 1850 60  0000 C CNN
+	1    10600 1850
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R1
+U 1 1 5522C92B
+P 9050 2750
+F 0 "R1" V 9130 2750 40  0000 C CNN
+F 1 "82kΩ" V 9057 2751 40  0000 C CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 8980 2750 30  0001 C CNN
+F 3 "" H 9050 2750 30  0000 C CNN
+	1    9050 2750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5850 1450 6500 1450
+Connection ~ 6250 1450
+Wire Wire Line
+	5850 1550 5850 1650
+Wire Wire Line
+	5850 1650 6500 1650
+Connection ~ 6250 1650
+Wire Wire Line
+	6850 1450 6850 1650
+Wire Wire Line
+	3800 1800 4000 1800
+Wire Wire Line
+	4000 1800 4000 1950
+Wire Wire Line
+	4000 1950 4350 1950
+Wire Wire Line
+	3800 2200 4000 2200
+Wire Wire Line
+	4000 2200 4000 2050
+Wire Wire Line
+	4000 2050 4350 2050
+Wire Wire Line
+	7250 2800 7450 2800
+Wire Wire Line
+	7450 2800 7450 2650
+Wire Wire Line
+	7450 2650 7750 2650
+Wire Wire Line
+	7750 2550 7450 2550
+Wire Wire Line
+	7450 2550 7450 2400
+Wire Wire Line
+	7450 2400 7250 2400
+Wire Wire Line
+	8900 2400 9350 2400
+Wire Wire Line
+	9350 2400 9350 2800
+Wire Wire Line
+	5850 1150 7550 1150
+Wire Wire Line
+	7550 1150 7550 2400
+Wire Wire Line
+	7550 2400 7750 2400
+Wire Wire Line
+	7750 2300 7600 2300
+Wire Wire Line
+	7600 2300 7600 1050
+Wire Wire Line
+	7600 1050 5850 1050
+Wire Wire Line
+	8900 2500 9050 2500
+Text GLabel 4350 1200 0    55   Input ~ 0
+SCK
+Text GLabel 1800 1500 0    55   Input ~ 0
+SCK
+Text GLabel 4350 1000 0    55   Input ~ 0
+MISO
+Text GLabel 1800 1600 0    55   Input ~ 0
+MISO
+Text GLabel 5850 1750 2    60   Input ~ 0
+INT0
+Text GLabel 1150 1100 2    60   Input ~ 0
+INT0
+Text GLabel 4350 1100 0    55   Input ~ 0
+MOSI
+Text GLabel 1800 1700 0    55   Input ~ 0
+MOSI
+Text GLabel 4350 1300 0    55   Input ~ 0
+CS
+Text GLabel 1800 1800 0    55   Input ~ 0
+CS
+$Comp
+L R R2
+U 1 1 5523187F
+P 9650 2550
+F 0 "R2" V 9730 2550 40  0000 C CNN
+F 1 "120Ω" V 9657 2551 40  0000 C CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 9580 2550 30  0001 C CNN
+F 3 "" H 9650 2550 30  0000 C CNN
+	1    9650 2550
+	1    0    0    -1  
+$EndComp
+$Comp
+L Fuse F1
+U 1 1 55231BCD
+P 10600 2200
+F 0 "F1" H 10700 2250 40  0000 C CNN
+F 1 "160mA" H 10500 2150 40  0000 C CNN
+F 2 "Fuse_Holders_and_Fuses:Fuse_SMD1206_HandSoldering" H 10600 2200 60  0001 C CNN
+F 3 "" H 10600 2200 60  0000 C CNN
+	1    10600 2200
+	-1   0    0    1   
+$EndComp
+Text GLabel 4350 1800 0    55   Input ~ 0
+RESET
+Text GLabel 1800 900  0    55   Input ~ 0
+RESET
+$Comp
+L +12V #PWR08
+U 1 1 5522C63B
+P 1800 700
+F 0 "#PWR08" H 1800 650 20  0001 C CNN
+F 1 "+12V" H 1800 800 30  0000 C CNN
+F 2 "" H 1800 700 60  0000 C CNN
+F 3 "" H 1800 700 60  0000 C CNN
+	1    1800 700 
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND-RESCUE-MiniCAN #PWR09
+U 1 1 5522CA94
+P 1150 1000
+F 0 "#PWR09" H 1150 1000 30  0001 C CNN
+F 1 "GND" H 1150 930 30  0001 C CNN
+F 2 "" H 1150 1000 60  0000 C CNN
+F 3 "" H 1150 1000 60  0000 C CNN
+	1    1150 1000
+	0    -1   -1   0   
+$EndComp
+$Comp
+L GND-RESCUE-MiniCAN #PWR010
+U 1 1 5522CAEA
+P 1800 800
+F 0 "#PWR010" H 1800 800 30  0001 C CNN
+F 1 "GND" H 1800 730 30  0001 C CNN
+F 2 "" H 1800 800 60  0000 C CNN
+F 3 "" H 1800 800 60  0000 C CNN
+	1    1800 800 
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	8900 2300 9900 2300
+Text GLabel 9900 2300 2    55   Input ~ 0
+CAN_L
+Text GLabel 9900 2800 2    55   Input ~ 0
+CAN_H
+Text GLabel 10600 2550 0    55   Input ~ 0
+CAN_H
+Text GLabel 10600 2650 0    55   Input ~ 0
+CAN_L
+$Comp
+L +5V #PWR011
+U 1 1 5522D4B6
+P 1800 1000
+F 0 "#PWR011" H 1800 1090 20  0001 C CNN
+F 1 "+5V" H 1800 1090 30  0000 C CNN
+F 2 "" H 1800 1000 60  0000 C CNN
+F 3 "" H 1800 1000 60  0000 C CNN
+	1    1800 1000
+	0    -1   -1   0   
+$EndComp
+Text GLabel 9050 3000 3    60   Input ~ 0
+Rs
+Text GLabel 5850 1950 2    60   Input ~ 0
+Rs
+Wire Wire Line
+	9350 2800 9900 2800
+Connection ~ 9650 2800
+Connection ~ 9650 2300
+$Comp
+L WAGO_233_504 P3
+U 1 1 5579E23D
+P 10950 2500
+F 0 "P3" V 10900 2500 50  0000 C CNN
+F 1 "WAGO_233_504" V 11000 2500 26  0000 C CNN
+F 2 "wago:WAGO_233-504" H 10950 2500 60  0001 C CNN
+F 3 "" H 10950 2500 60  0000 C CNN
+	1    10950 2500
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	3800 1850 3800 1800
+Wire Wire Line
+	3800 2150 3800 2200
+Wire Wire Line
+	6800 1450 6850 1450
+Wire Wire Line
+	6850 1650 6800 1650
+Wire Wire Line
+	6250 1400 6250 1450
+Wire Wire Line
+	6250 1700 6250 1650
+Wire Wire Line
+	7250 2400 7250 2450
+Wire Wire Line
+	7250 2750 7250 2800
+Wire Wire Line
+	9050 2500 9050 2600
+Wire Wire Line
+	9050 2900 9050 3000
+Wire Wire Line
+	9650 2300 9650 2400
+Wire Wire Line
+	9650 2700 9650 2800
+Wire Wire Line
+	10600 2050 10600 1850
+$EndSCHEMATC
