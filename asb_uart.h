@@ -89,6 +89,17 @@
              * @return true if a message was received
              */
             bool asbReceive(asbPacket &pkg);
+
+            /**
+             * Convert ASCII hex to byte
+             *
+             * This will convert the characters 0-9, A-F and a-f to an
+             * byte-value between 0 and 15. Other inputs will return 0
+             *
+             * @param byte single ASCII hex character
+             * @return corresponding numeric byte value
+             */
+            byte asbHexToByte(byte hex);
     };
 
 #endif /* ASB_UART__H */

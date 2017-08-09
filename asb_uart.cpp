@@ -123,7 +123,7 @@
                         for(read = 2; read <= _buf[0] && !break2; read++) {
                             switch(state) {
                                 case 0:
-                                    pkg.meta.type = _buf[read] - 0x30;
+                                    pkg.meta.type = asbHexToByte(_buf[read]);
                                     state++;
                                     break;
                                 case 1:
@@ -140,7 +140,7 @@
                                         state++;
                                     }else{
                                         pkg.meta.target <<=4;
-                                        pkg.meta.target |= (_buf[read] - 0x30);
+                                        pkg.meta.target |= asbHexToByte(_buf[read]);
                                     }
                                     break;
                                 case 3:
@@ -149,7 +149,7 @@
                                         pkg.meta.port = 0;
                                     }else{
                                         pkg.meta.source <<=4;
-                                        pkg.meta.source |= (_buf[read] - 0x30);
+                                        pkg.meta.source |= asbHexToByte(_buf[read]);
                                     }
                                     break;
                                 case 4:
@@ -157,11 +157,11 @@
                                         state++;
                                     }else{
                                         pkg.meta.port <<=4;
-                                        pkg.meta.port |= (_buf[read] - 0x30);
+                                        pkg.meta.port |= asbHexToByte(_buf[read]);
                                     }
                                     break;
                                 case 5:
-                                    pkg.len = _buf[read] - 0x30;
+                                    pkg.len = asbHexToByte(_buf[read]);
                                     state++;
                                     break;
                                 case 6:
@@ -182,7 +182,7 @@
                                         state++;
                                     }else{
                                         pkg.data[curwrite] <<=4;
-                                        pkg.data[curwrite] |= (_buf[read]-0x30);
+                                        pkg.data[curwrite] |= asbHexToByte(_buf[read]);
                                     }
                                     break;
                                 case 8:
@@ -197,6 +197,13 @@
             }while(retry);
         }
         return false;
+    }
+
+    byte ASB_UART::asbHexToByte(byte hex) {
+        if(hex >= '0' && hex <= '9') return hex-'0';
+        if(hex >= 'a' && hex <= 'f') return hex-'a'+10;
+        if(hex >= 'A' && hex <= 'F') return hex-'A'+10;
+        return 0;
     }
 
 #endif /* ASB_UART__C */
