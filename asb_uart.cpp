@@ -31,7 +31,7 @@
         return 0;
     }
 
-    bool ASB_UART::asbSend(byte type, unsigned int target, unsigned int source, char port, byte len, byte *data) {
+    bool ASB_UART::asbSend(byte type, unsigned int target, unsigned int source, char port, byte len, const byte *data) {
         byte tlen = 0;
         _interface->write(0x01);
         _interface->print(type,HEX);
