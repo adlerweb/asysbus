@@ -51,7 +51,7 @@
              * @param len number of bytes to send (0-8)
              * @param data array of bytes to send
              */
-            virtual bool asbSend(byte type, unsigned int target, unsigned int source, char port, byte len, byte *data) = 0;
+            virtual bool asbSend(byte type, unsigned int target, unsigned int source, char port, byte len, const byte *data) = 0;
 
             /**
              * Receive a message from the interface

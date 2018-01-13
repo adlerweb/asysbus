@@ -61,8 +61,7 @@
 
     byte ASB_CAN::begin() {
         //MCP_EXT would be better, but fails regulary :/
-        lastErr = _interface.begin(MCP_ANY, _speed, _clockspd);
-        if(lastErr == CAN_OK) _interface.setMode(MODE_NORMAL);
+        lastErr = _interface.begin(_speed, _clockspd);
     }
 
     asbMeta ASB_CAN::asbCanAddrParse(unsigned long canAddr) {
@@ -115,11 +114,13 @@
           return addr;
     }
 
-    bool ASB_CAN::asbSend(byte type, unsigned int target, unsigned int source, char port, byte len, byte *data) {
+    bool ASB_CAN::asbSend(byte type, unsigned int target, unsigned int source, char port, byte len, const byte *data) {
         unsigned long addr = asbCanAddrAssemble(type, target, source, port);
         if(addr == 0) return false;
 
-        lastErr = _interface.sendMsgBuf(addr, len, data);
+        byte ext = 0;
+
+        lastErr = _interface.sendMsgBuf(addr, ext, len, data);
         if(lastErr != CAN_OK) return false;
         return true;
     }
@@ -128,14 +129,11 @@
 
         unsigned long rxId;
         byte len = 0;
-        byte ext = 0;
         byte rxBuf[8];
 
         if(_interface.checkReceive() != CAN_MSGAVAIL) return false;
 
-        byte state = _interface.readMsgBufID(&rxId, &ext, &len, rxBuf);
-
-        if(ext != 1) return false; //This is not an extended ID - not an asb packet…
+        byte state = _interface.readMsgBufID(&rxId, &len, rxBuf);
 
         pkg.meta = asbCanAddrParse(rxId);
         pkg.len = len;

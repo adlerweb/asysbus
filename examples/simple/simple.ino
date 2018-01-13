@@ -12,8 +12,8 @@
 //This is the "brain" and already handles routing between multiple interfaces and some messages like PING
 ASB asb0(0x123);
 
-//Start new CAN-Bus with 125KBps and 16MHz crystal using CS pin 10 and Interrupt pin 2
-ASB_CAN asbCan0(10, CAN_125KBPS, MCP_16MHZ, 2);
+//Start new CAN-Bus with 125KBps and 8MHz crystal using CS pin 10 and Interrupt pin 2
+ASB_CAN asbCan0(10, CAN_125KBPS, MCP_8MHz, 2);
 
 unsigned long lastSend;
 
