@@ -5,10 +5,8 @@
 
   Based on iSysBus - 2010 Patrick Amrhein, www.isysbus.org
 
-  This interface depends on a modified version of the CAN_BUS_Shield library.
-    Download: https://github.com/adlerweb/CAN_BUS_Shield
-        Original: https://github.com/Seeed-Studio/CAN_BUS_Shield
-        8MHz-Support: https://github.com/peppeve/CAN_BUS_Shield
+  This interface depends on the CAN_BUS_Shield library.
+    Download: https://github.com/Seeed-Studio/CAN_BUS_Shield
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -60,9 +58,7 @@
     }
 
     byte ASB_CAN::begin() {
-        //MCP_EXT would be better, but fails regulary :/
-        lastErr = _interface.begin(MCP_ANY, _speed, _clockspd);
-        if(lastErr == CAN_OK) _interface.setMode(MODE_NORMAL);
+        lastErr = _interface.begin(_speed, _clockspd);
     }
 
     asbMeta ASB_CAN::asbCanAddrParse(unsigned long canAddr) {
@@ -119,7 +115,7 @@
         unsigned long addr = asbCanAddrAssemble(type, target, source, port);
         if(addr == 0) return false;
 
-        lastErr = _interface.sendMsgBuf(addr, len, data);
+        lastErr = _interface.sendMsgBuf(addr, 1, len, data);
         if(lastErr != CAN_OK) return false;
         return true;
     }
@@ -127,15 +123,18 @@
     bool ASB_CAN::asbReceive(asbPacket &pkg) {
 
         unsigned long rxId;
+		byte status = 0;
         byte len = 0;
         byte ext = 0;
+		byte rtr = 0;
         byte rxBuf[8];
 
         if(_interface.checkReceive() != CAN_MSGAVAIL) return false;
 
-        byte state = _interface.readMsgBufID(&rxId, &ext, &len, rxBuf);
+        byte state = _interface.readMsgBufID(&status, &rxId, &ext, &rtr, &len, rxBuf);
 
         if(ext != 1) return false; //This is not an extended ID - not an asb packet…
+        if(rtr != 0) return false; //This is a rtr - not an asb packet…
 
         pkg.meta = asbCanAddrParse(rxId);
         pkg.len = len;

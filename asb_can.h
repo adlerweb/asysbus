@@ -46,7 +46,7 @@
             /**
              * CAN-Bus object
              * @see MCP_CAN
-             * @see https://github.com/coryjfowler/MCP_CAN_lib
+             * @see https://github.com/Seeed-Studio/CAN_BUS_Shield
              */
             MCP_CAN _interface;
 
@@ -72,7 +72,7 @@
              * @param cs pin used for CHIP_SELECT
              * @param speed CAN bus speed definition from mcp_can_dfs.h (bottom)
              * @param clockspd MCP crystal frequency from mcp_can_dfs.h (bootom)
-             * @see https://github.com/coryjfowler/MCP_CAN_lib/blob/master/mcp_can_dfs.h
+             * @see https://github.com/Seeed-Studio/CAN_BUS_Shield/blob/master/mcp_can_dfs.h
              */
             ASB_CAN(byte cs, byte speed, byte clockspd);
 
@@ -82,14 +82,14 @@
              * @param speed CAN bus speed definition from mcp_can_dfs.h (bottom)
              * @param clockspd MCP crystal frequency from mcp_can_dfs.h (bootom)
              * @param interrupt pin used for interrupt. Must have hardware INT support
-             * @see https://github.com/coryjfowler/MCP_CAN_lib/blob/master/mcp_can_dfs.h
+             * @see https://github.com/Seeed-Studio/CAN_BUS_Shield/blob/master/mcp_can_dfs.h
              */
             ASB_CAN(byte cs, byte speed, byte clockspd, byte interrupt);
 
             /**
              * Initialize CAN controller
              * @return byte error code
-             * @see https://github.com/coryjfowler/MCP_CAN_lib/blob/master/mcp_can_dfs.h
+             * @see https://github.com/Seeed-Studio/CAN_BUS_Shield/blob/master/mcp_can_dfs.h
              */
             byte begin(void);
 

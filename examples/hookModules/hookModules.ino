@@ -16,7 +16,7 @@
 ASB asb0(0, EEPROM.length());
 
 //Start new CAN-Bus with 125KBps and 16MHz crystal using CS pin 10 and Interrupt pin 2
-ASB_CAN asbCan0(10, CAN_125KBPS, MCP_16MHZ, 2);
+ASB_CAN asbCan0(10, CAN_125KBPS, MCP_16MHz, 2);
 
 //Start new UART-Bus using "Serial". Keep in mind to initialize it as usual in setup();
 ASB_UART asbUart0(Serial);
