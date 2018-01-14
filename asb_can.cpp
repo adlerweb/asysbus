@@ -111,7 +111,7 @@
           return addr;
     }
 
-    bool ASB_CAN::asbSend(byte type, unsigned int target, unsigned int source, char port, byte len, byte *data) {
+    bool ASB_CAN::asbSend(byte type, unsigned int target, unsigned int source, char port, byte len, const byte *data) {
         unsigned long addr = asbCanAddrAssemble(type, target, source, port);
         if(addr == 0) return false;
 
