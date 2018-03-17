@@ -48,7 +48,6 @@ def on_message(client, userdata, msg):
         sio.write(asbPkgEncode(0x01, topici, myid, -1, [0x52, int(msg.payload)]))
         sio.flush() # it is buffering. required to get the data out *now*
 
-
 def asbPkgDecode(line):
     m = re.search('\x01([0-9A-F]*)\x1f([0-9A-F]*)\x1f([0-9A-F]*)\x1f([0-9A-F]*)\x1f([0-9A-F]*)\x02((([0-9A-F]*)\x1f)*)\x04', line)
     if not m:
@@ -105,7 +104,10 @@ def asbPkgDecode(line):
 
         dmc = 0
         while dmc < pkg['len']:
-            pkg['data'].append(int(dm[dmc], 16))
+            try:
+                pkg['data'].append(int(dm[dmc], 16))
+            except:
+                pass
             dmc=dmc+1
 
     return pkg
@@ -202,6 +204,8 @@ client.on_connect = on_connect
 client.on_message = on_message
 
 client.will_set(mqtt_topicBase + '/LWT', 'OFF', 0, False)
+#client.tls_set('/etc/mosquitto/certs/ca.crt');
+#client.username_pw_set('asysbus', 'mqttpassword')
 client.connect(mqtt_server, mqtt_port, 60)
 client.publish(mqtt_topicBase + "/LWT", 'ON')
 
@@ -209,33 +213,37 @@ client.loop_start()
 
 while True:
     message = sio.readline()
-    if message.strip():
-        pkg = asbPkgDecode(message.rstrip())
+    if message.rstrip():
+        try:
+            pkg = asbPkgDecode(message.rstrip())
 
-        if pkg:
-            print('---')
-            print(strftime("%Y-%m-%d %H:%M:%S", localtime()));
-            print("Packet type: " + asbPkgDecodeType(pkg['meta']['type']) + ' (' +  "{0:#0{1}x}".format(pkg['meta']['type'],4) + ')');
-            print("Target:      " +  "{0:#0{1}x}".format(pkg['meta']['target'],6));
-            print("Source:      " +  "{0:#0{1}x}".format(pkg['meta']['source'],6));
-            print("Port:        " +  "{0:#0{1}x}".format(pkg['meta']['port'],4));
-            print("Length:      " +  "{0:#0{1}x}".format(pkg['len'],4));
+            if pkg:
+                print('---')
+                print(strftime("%Y-%m-%d %H:%M:%S", localtime()));
+                print("Packet type: " + asbPkgDecodeType(pkg['meta']['type']) + ' (' +  "{0:#0{1}x}".format(pkg['meta']['type'],4) + ')');
+                print("Target:      " +  "{0:#0{1}x}".format(pkg['meta']['target'],6));
+                print("Source:      " +  "{0:#0{1}x}".format(pkg['meta']['source'],6));
+                print("Port:        " +  "{0:#0{1}x}".format(pkg['meta']['port'],4));
+                print("Length:      " +  "{0:#0{1}x}".format(pkg['len'],4));
 
-            dbc = 0
-            for db in pkg['data']:
-                print("  " + str(dbc) + " => " + "{0:#0{1}x}".format(db,4));
-                dbc = dbc + 1;
+                dbc = 0
+                for db in pkg['data']:
+                    print("  " + str(dbc) + " => " + "{0:#0{1}x}".format(db,4));
+                    dbc = dbc + 1;
 
-            print(asbPkgDecodeCmd(pkg['data']))
-            print('---')
+                print(asbPkgDecodeCmd(pkg['data']))
+                print('---')
 
-            if pkg['len'] == 2 and (pkg['data'][0] == 0x51): #1-Bit-Message
-                client.publish(mqtt_topicBase + "/" + "{0:0{1}x}".format(pkg['meta']['target'],4) + "/switch", str(pkg['data'][1]))
+                if pkg['len'] == 2 and (pkg['data'][0] == 0x51): #1-Bit-Message
+                    client.publish(mqtt_topicBase + "/" + "{0:0{1}x}".format(pkg['meta']['target'],4) + "/switch", str(pkg['data'][1]))
 
-            if pkg['len'] == 2 and (pkg['data'][0] == 0x52): #% message
-                client.publish(mqtt_topicBase + "/" + "{0:0{1}x}".format(pkg['meta']['target'],4) + "/level", str(pkg['data'][1]))
+                if pkg['len'] == 2 and (pkg['data'][0] == 0x52): #% message
+                    client.publish(mqtt_topicBase + "/" + "{0:0{1}x}".format(pkg['meta']['target'],4) + "/level", str(pkg['data'][1]))
 
-            if pkg['len'] == 1 and (pkg['data'][0] == 0x21):
-                client.publish(mqtt_topicBase + "/" + "{0:0{1}x}".format(pkg['meta']['source'],4) + "/lastboot", time.time())
+                if pkg['len'] == 1 and (pkg['data'][0] == 0x21):
+                    client.publish(mqtt_topicBase + "/" + "{0:0{1}x}".format(pkg['meta']['source'],4) + "/lastboot", time.time())
 
-    time.sleep(0.1)
+        except:
+            print('Decode failed!');
+
+    time.sleep(0.01)
