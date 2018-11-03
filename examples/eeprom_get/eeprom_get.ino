@@ -4,7 +4,7 @@ void setup() {
   byte check;
   
   Serial.begin(115200);
-  for (int i = 0 ; i < EEPROM.length() ; i++) {
+  for (unsigned int i = 0 ; i < EEPROM.length() ; i++) {
     check = EEPROM.read(i);
     Serial.print("0x");
     Serial.print(i, HEX);
