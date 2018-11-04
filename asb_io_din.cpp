@@ -83,7 +83,7 @@
             #endif
             return false;
         }
-        byte temp;
+
         unsigned int address;
 
         if(cfg.pin == 0xFF) {
@@ -226,7 +226,6 @@
 
     bool ASB_IO_DIN::attach(unsigned int target, byte pin, byte mode, bool invert, bool pullup) {
         if(_control == NULL) return false;
-        byte check;
         asbIoDIn cfg;
 
         cfg.target = target;

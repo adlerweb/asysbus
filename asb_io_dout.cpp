@@ -70,7 +70,7 @@
             #endif
             return false;
         }
-        byte temp;
+        
         unsigned int address;
 
         if(cfg.pin == 0xFF) {
@@ -166,7 +166,7 @@
 
     bool ASB_IO_DOUT::attach(unsigned int target, byte pin, byte mode, bool invert, bool init) {
         if(_control == NULL) return false;
-        byte check;
+        
         asbIoDOut cfg;
 
         cfg.target = target;

@@ -207,7 +207,6 @@
 
     bool ASB::asbReceive(asbPacket &pkg, bool routing) {
         bool check = false;
-        byte i = 0;
 
         for(unsigned char busId=0; busId<ASB_BUSNUM; busId++) {
             if(_busAddr[busId] != NULL) {
@@ -230,7 +229,7 @@
     }
 
     void ASB::asbProcess(asbPacket &pkg) {
-        byte i,temp;
+        byte i;
         byte data[8];
         
         //Internal logic
@@ -247,7 +246,7 @@
         }
 
         //modules
-        for(byte i=0; i<ASB_MODNUM; i++) {
+        for(i=0; i<ASB_MODNUM; i++) {
             if(_module[i] != NULL) {
                 Serial.print(F("exec")); Serial.println(); Serial.flush();
                 _module[i]->process(pkg);
@@ -255,7 +254,7 @@
         }
 
         //Hooked functions
-        for(byte i = 0; i<ASB_HOOKNUM; i++) {
+        for(i = 0; i<ASB_HOOKNUM; i++) {
             if(_hooks[i].execute != 0) {
                 if(
                     (_hooks[i].type == 0xFF || _hooks[i].type == pkg.meta.type) &&
@@ -349,8 +348,7 @@
     }
 
     asbPacket ASB::loop(void) {
-        byte temp,i;
-        byte data[2] = {ASB_CMD_1B, 0};
+        byte i;
         asbPacket pkg;
 
         //Packet handling
@@ -358,7 +356,7 @@
         asbReceive(pkg);
 
         //Modules
-        for(byte i=0; i<ASB_MODNUM; i++) {
+        for(i=0; i<ASB_MODNUM; i++) {
             if(_module[i] != NULL) {
                 _module[i]->loop();
             }
