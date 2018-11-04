@@ -1,6 +1,11 @@
 # This script will relay 0x51 and 0x52 messages (on/off and percent) between
 # a aSysBus-Node connected via serial and a MQTT broker
 
+# Requires:
+#   asyncio
+#   aiomqtt (+ paho-mqtt)
+#   pyserial-asyncio (+ pyserial)
+
 import asyncio
 import serial_asyncio
 from functools import partial
