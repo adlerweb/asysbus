@@ -222,6 +222,7 @@
         }
         
         if(t) delay(100); //TODO Replace this very ugly line fooling people who dont read code there would be proper debounce ;)
+        return true;
     }
 
     bool ASB_IO_DIN::attach(unsigned int target, byte pin, byte mode, bool invert, bool pullup) {
@@ -233,8 +234,7 @@
         cfg.invert = invert;
         cfg.pullup = pullup;
         cfg.mode = mode;
-        cfgWrite(cfg);
-
+        if(!cfgWrite(cfg)) return false;
         _control->hookDetachModule(_cfgId);
         return _control->hookAttachModule(this);
     }

@@ -194,6 +194,7 @@
 
             asbProcess(pkg);
         }
+        return errors;
     }
 
     bool ASB::asbReceive(asbPacket &pkg) {
