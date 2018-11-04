@@ -110,9 +110,7 @@
             bool cfgWrite(asbIoDIn &cfg);
 
             /**
-             * Reset current configuration and reserve memory
-             * for x objects
-             * @param objects number of new objects
+             * Reset current configuration and free memory
              * @return bool true if successful
              */
             bool cfgReset(void);

@@ -182,7 +182,7 @@
              * @param meta asbMeta object containing message metadata
              * @param len number of data bytes to send
              * @param data array of data bytes to send
-             * @return ind number of errors
+             * @return number of errors
              */
             byte asbSend(asbMeta meta, byte len, byte *data);
             /**
@@ -191,7 +191,7 @@
              * @param target target address between 0x0001 and 0x07FF/0xFFFF
              * @param len number of data bytes to send
              * @param data array of data bytes to send
-             * @return ind number of errors
+             * @return number of errors
              */
             byte asbSend(byte type, unsigned int target, byte len, byte *data);
             /**
@@ -201,7 +201,7 @@
              * @param port port address between 0x00 and 0x1F, Unicast only
              * @param len number of data bytes to send
              * @param data array of data bytes to send
-             * @return ind number of errors
+             * @return number of errors
              */
             byte asbSend(byte type, unsigned int target, char port, byte len, byte *data);
             /**
@@ -213,7 +213,7 @@
              * @param len number of data bytes to send
              * @param data array of data bytes to send
              * @param skip busID as per busAttach to skip when sending
-             * @return ind number of errors
+             * @return number of errors
              * @see busAttach()
              */
             byte asbSend(byte type, unsigned int target, unsigned int source, char port, byte len, byte *data, unsigned char skip);

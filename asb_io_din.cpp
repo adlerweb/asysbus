@@ -20,7 +20,7 @@
 */
 
 #ifndef ASB_IO_DIN__C
-#define ASB_IO_DIN__C
+    #define ASB_IO_DIN__C
 
     #include <Arduino.h>
     #include <inttypes.h>
