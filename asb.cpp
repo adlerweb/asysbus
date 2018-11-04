@@ -285,8 +285,8 @@
 
     bool ASB::hookAttachModule(ASB_IO *module) {
         for(byte i=0; i<ASB_MODNUM; i++) {
-            module->_control = this;
             if(_module[i] == NULL) {
+                module->_control = this;
                 _module[i] = (ASB_IO *)module;
 
                 byte id = module->_cfgId;
@@ -321,7 +321,7 @@
                                 module->cfgRead(address);
                             }
                             address += len;
-                        }while(address < _cfgAddrStop && check != 0xFF && check != 0x00);
+                        }while(address < _cfgAddrStop && check != 0xFF && check != 0x00 && done < num);
                         return true;
                     }else{
                         #ifdef ASB_DEBUG
