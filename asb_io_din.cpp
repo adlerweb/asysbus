@@ -110,6 +110,7 @@
     bool ASB_IO_DIN::cfgReset(void) {
         if(_config == NULL) return true;
         free(_config);
+        _config = NULL;
         _items = 0;
         return true;
     }
