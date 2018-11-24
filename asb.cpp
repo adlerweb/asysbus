@@ -321,7 +321,7 @@
                                 module->cfgRead(address);
                             }
                             address += len;
-                        }while(address < _cfgAddrStop && check != 0xFF && check != 0x00 && done < num);
+                        }while(address < _cfgAddrStop && check != 0xFF && check != 0x00);
                         return true;
                     }else{
                         #ifdef ASB_DEBUG
