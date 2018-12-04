@@ -24,8 +24,11 @@ void setup() {
 
   //Attach the previously defined CAN-Bus to our controller
   Serial.print(F("Attach CAN..."));
-  asb0.busAttach(&asbCan0);
-  Serial.println(F("done!"));
+  if(asb0.busAttach(&asbCan0) < 0) {
+    Serial.println(F("Error!"));
+  }else{
+    Serial.println(F("done!"));
+  }
 }
 
 void loop() {

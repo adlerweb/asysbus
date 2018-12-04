@@ -61,11 +61,18 @@ void setup() {
 
   //Attach the previously defined CAN-Bus to our controller
   Serial.print(F("Attach CAN..."));
-  asb0.busAttach(&asbCan0);
+  if(asb0.busAttach(&asbCan0) < 0) {
+    Serial.println(F("Error!"));
+  }else{
+    Serial.println(F("done!"));
+  }
   //Same for the UART-Bus
   Serial.print(F("Attach UART..."));
-  asb0.busAttach(&asbUart0);
-  Serial.println(F("done!"));
+  if(asb0.busAttach(&asbUart0) < 0) {
+    Serial.println(F("Error!"));
+  }else{
+    Serial.println(F("done!"));
+  }
 
   //Bind the previously defined input module to our controller
   Serial.print(F("Attach Input-Module to ASB..."));

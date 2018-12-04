@@ -67,13 +67,17 @@
         for(signed char busId=0; busId<ASB_BUSNUM; busId++) {
             if(_busAddr[busId] == 0x00) {
                 _busAddr[busId] = bus;
-                bus->begin();
+                byte err = bus->begin();
+                if(err == 0) {
+                    //Boot message
+                    byte data[1] = {ASB_CMD_BOOT};
+                    bus->asbSend(ASB_PKGTYPE_BROADCAST, 0x00, _nodeId, -1, sizeof(data), data);
 
-                //Boot message
-                byte data[1] = {ASB_CMD_BOOT};
-                bus->asbSend(ASB_PKGTYPE_BROADCAST, 0x00, _nodeId, -1, sizeof(data), data);
-
-                return busId;
+                    return busId;
+                }else{
+                    _busAddr[busId] = 0x00;
+                }
+                return -2;
             }
         }
         return -1;
