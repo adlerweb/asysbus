@@ -336,10 +336,13 @@ async def mqtt(mqttTxQueue, canTxQueue, server, port, topicBase, user, passwd, c
 
     while True:
         msg = await mqttTxQueue.get()
-        msgPublish = client.publish(mqtt_topicBase + msg[0], msg[1], retain=msg[2])
-        await msgPublish.wait_for_publish()
-        print("MQTT publish - Retain: " + str(msg[2]) + " Topic: " + mqtt_topicBase + msg[0] + " - Message: " + str(msg[1]))
-
+        try:
+            msgPublish = client.publish(mqtt_topicBase + msg[0], msg[1], retain=msg[2])
+            await msgPublish.wait_for_publish()
+            print("MQTT publish - Retain: " + str(msg[2]) + " Topic: " + mqtt_topicBase + msg[0] + " - Message: " + str(msg[1]))
+        except IndexError:
+            print("MQTT publish failed: ")
+            print(msg)
 
 canRxQueue = asyncio.Queue()
 canTxQueue = asyncio.Queue()
