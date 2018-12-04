@@ -156,7 +156,7 @@
              * @return true if successful
              * @see busAttach()
              */
-            bool busDetach(unsigned char busId);
+            bool busDetach(signed char busId);
 
             /**
              * First EEPROM address to use
@@ -216,7 +216,7 @@
              * @return number of errors
              * @see busAttach()
              */
-            byte asbSend(byte type, unsigned int target, unsigned int source, char port, byte len, byte *data, unsigned char skip);
+            byte asbSend(byte type, unsigned int target, unsigned int source, char port, byte len, byte *data, signed char skip);
 
             /**
              * Receive a message from the bus

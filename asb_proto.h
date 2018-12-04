@@ -99,7 +99,7 @@
        * Interface the message originated from
        * @see ASB::busAttach
        */
-      unsigned char busId = -1;
+      signed char busId = -1;
     } asbMeta;
 
     /**

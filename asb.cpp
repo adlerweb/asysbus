@@ -64,7 +64,7 @@
     }
 
     char ASB::busAttach(ASB_COMM *bus) {
-        for(unsigned char busId=0; busId<ASB_BUSNUM; busId++) {
+        for(signed char busId=0; busId<ASB_BUSNUM; busId++) {
             if(_busAddr[busId] == 0x00) {
                 _busAddr[busId] = bus;
                 bus->begin();
@@ -79,7 +79,7 @@
         return -1;
     }
 
-    bool ASB::busDetach(unsigned char busId) {
+    bool ASB::busDetach(signed char busId) {
         if(busId < 0 || busId >= ASB_BUSNUM) return false;
         if(_busAddr[busId] == 0x00) return false;
         _busAddr[busId] = 0x00;
@@ -169,13 +169,13 @@
         return asbSend(type, target, _nodeId, port, len, data, -1);
     }
 
-    byte ASB::asbSend(byte type, unsigned int target, unsigned int source, char port, byte len, byte *data, unsigned char skip) {
+    byte ASB::asbSend(byte type, unsigned int target, unsigned int source, char port, byte len, byte *data, signed char skip) {
         bool state;
         byte errors=0,i;
 
         if(source == 0) source = _nodeId;
 
-        for(unsigned char busId=0; busId<ASB_BUSNUM; busId++) {
+        for(signed char busId=0; busId<ASB_BUSNUM; busId++) {
             if(_busAddr[busId] != NULL && busId != skip) {
                 state = _busAddr[busId]->asbSend(type, target, source, port, len, data);
                 if(!state) errors++;
@@ -209,7 +209,7 @@
     bool ASB::asbReceive(asbPacket &pkg, bool routing) {
         bool check = false;
 
-        for(unsigned char busId=0; busId<ASB_BUSNUM; busId++) {
+        for(signed char busId=0; busId<ASB_BUSNUM; busId++) {
             if(_busAddr[busId] != NULL) {
                 check = _busAddr[busId]->asbReceive(pkg);
                 if(check) {
