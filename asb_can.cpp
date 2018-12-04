@@ -124,19 +124,14 @@
     bool ASB_CAN::asbReceive(asbPacket &pkg) {
 
         unsigned long rxId;
-	byte status = 0;
         byte len = 0;
-        byte ext = 0;
-	byte rtr = 0;
         byte rxBuf[8];
 
         if(_interface.checkReceive() != CAN_MSGAVAIL) return false;
 
-        byte state = _interface.readMsgBufID(status, &rxId, &ext, &rtr, &len, rxBuf);
+        byte state = _interface.readMsgBufID(&rxId, &len, rxBuf);
 
         if(state != CAN_OK) return false;
-        if(ext != 1) return false; //This is not an extended ID - not an asb packet…
-        if(rtr != 0) return false; //This is a rtr - not an asb packet…
 
         pkg.meta = asbCanAddrParse(rxId);
         pkg.len = len;
