@@ -119,7 +119,7 @@ async def procCANRx(queue, mqttTxQueue):
                 asyncio.ensure_future(mqttTxQueue.put(["/" + "{0:0{1}x}".format(pkg['meta']['target'],4) + "/get/level", str(pkg['data'][1]), True]))
                 
             if pkg['len'] == 1 and (pkg['data'][0] == 0x21): #Boot
-                asyncio.ensure_future(mqttTxQueue.put(["/" + "{0:0{1}x}".format(pkg['meta']['source'],4) + "/lastboot", time.time()]))
+                asyncio.ensure_future(mqttTxQueue.put(["/" + "{0:0{1}x}".format(pkg['meta']['source'],4) + "/lastboot", time.time(), False]))
                 
         queue.task_done()
 
