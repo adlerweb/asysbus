@@ -73,7 +73,7 @@
         temp.source = (canAddr & 0x7FF);
         temp.target = ((canAddr >> 11) & 0xFFFF);
 
-        if(temp.type == 0x03) { //Unicast
+        if(temp.type == ASB_PKGTYPE_UNICAST) { //Unicast
             temp.port = ((canAddr >> 23) & 0x1F);
             temp.target &= 0x7FF;
         }
