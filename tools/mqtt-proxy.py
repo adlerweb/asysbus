@@ -275,10 +275,10 @@ def asbPkgEncode(mtype, target, source, port, data):
     return out.upper()
 
 async def mqtt(mqttTxQueue, canTxQueue, server, port, topicBase, user, passwd, ca):
-    client = aiomqtt.Client(loop)
+    client = aiomqtt.Client()
     client.loop_start()
 
-    connected = asyncio.Event(loop=loop)
+    connected = asyncio.Event()
     def on_connect(client, userdata, flags, rc):
         connected.set()
     client.on_connect = on_connect
@@ -293,7 +293,7 @@ async def mqtt(mqttTxQueue, canTxQueue, server, port, topicBase, user, passwd, c
     await connected.wait()
     print("MQTT connected")
 
-    subscribed = asyncio.Event(loop=loop)
+    subscribed = asyncio.Event()
     def on_subscribe(client, userdata, mid, granted_qos):
         subscribed.set()
     client.on_subscribe = on_subscribe
